@@ -1,0 +1,9 @@
+[submodule "divolte"]
+	path = divolte
+	url = https://github.com/krisgeus/docker-divolte.git
+[submodule "kafka"]
+	path = kafka
+	url = https://github.com/krisgeus/docker-kafka.git
+[submodule "superset"]
+	path = superset
+	url = git@github.com:Fokko/docker-superset.git
