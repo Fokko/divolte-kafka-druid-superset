@@ -45,9 +45,9 @@ services:
       - 8088:8088
     links:
       - docker-druid:docker-druid
-    environment:
-      - ADMIN_USERNAME=admin
-      - ADMIN_PWD=mypassword
-      - ADMIN_FIRST_NAME=Fokko
-      - ADMIN_LAST_NAME=Driesprong
-      - ADMIN_EMAIL=fokkodriesprong@godatadriven.com
+  # Superset container
+  docker-app:
+    build: app/
+    container_name: docker-app
+    ports:
+      - 8090:8090

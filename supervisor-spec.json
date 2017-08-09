@@ -1,263 +1,205 @@
 {
-  "type": "kafka",
-  "dataSchema": {
-    "dataSource": "divolte-clickstream",
-    "parser": {
-      "type": "avro_stream",
-      "avroBytesDecoder": {
-        "type": "schema_inline",
-        "subjectAndIdConverter": {
-          "type": "avro_1124",
-          "topic": "docker-kafka:9092"
-        },
-        "schema": {
-          "namespace": "io.druid.data",
-          "name": "User",
-          "type": "record",
-          "fields": [
-            {
-              "name": "detectedDuplicate",
-              "type": "boolean"
-            },
-            {
-              "name": "detectedCorruption",
-              "type": "boolean"
-            },
-            {
-              "name": "firstInSession",
-              "type": "boolean"
-            },
-            {
-              "name": "timestamp",
-              "type": "long"
-            },
-            {
-              "name": "clientTimestamp",
-              "type": "long"
-            },
-            {
-              "name": "remoteHost",
-              "type": "string"
-            },
-            {
-              "name": "referer",
-              "type": [
-                "null",
-                "string"
-              ],
-              "default": null
-            },
-            {
-              "name": "location",
-              "type": [
-                "null",
-                "string"
-              ],
-              "default": null
-            },
-            {
-              "name": "viewportPixelWidth",
-              "type": [
-                "null",
-                "int"
-              ],
-              "default": null
-            },
-            {
-              "name": "viewportPixelHeight",
-              "type": [
-                "null",
-                "int"
-              ],
-              "default": null
-            },
-            {
-              "name": "screenPixelWidth",
-              "type": [
-                "null",
-                "int"
-              ],
-              "default": null
-            },
-            {
-              "name": "screenPixelHeight",
-              "type": [
-                "null",
-                "int"
-              ],
-              "default": null
-            },
-            {
-              "name": "partyId",
-              "type": [
-                "null",
-                "string"
-              ],
-              "default": null
-            },
-            {
-              "name": "sessionId",
-              "type": [
-                "null",
-                "string"
-              ],
-              "default": null
-            },
-            {
-              "name": "pageViewId",
-              "type": [
-                "null",
-                "string"
-              ],
-              "default": null
-            },
-            {
-              "name": "eventType",
-              "type": "string",
-              "default": "unknown"
-            },
-            {
-              "name": "userAgentString",
-              "type": [
-                "null",
-                "string"
-              ],
-              "default": null
-            },
-            {
-              "name": "userAgentName",
-              "type": [
-                "null",
-                "string"
-              ],
-              "default": null
-            },
-            {
-              "name": "userAgentFamily",
-              "type": [
-                "null",
-                "string"
-              ],
-              "default": null
-            },
-            {
-              "name": "userAgentVendor",
-              "type": [
-                "null",
-                "string"
-              ],
-              "default": null
-            },
-            {
-              "name": "userAgentType",
-              "type": [
-                "null",
-                "string"
-              ],
-              "default": null
-            },
-            {
-              "name": "userAgentVersion",
-              "type": [
-                "null",
-                "string"
-              ],
-              "default": null
-            },
-            {
-              "name": "userAgentDeviceCategory",
-              "type": [
-                "null",
-                "string"
-              ],
-              "default": null
-            },
-            {
-              "name": "userAgentOsFamily",
-              "type": [
-                "null",
-                "string"
-              ],
-              "default": null
-            },
-            {
-              "name": "userAgentOsVersion",
-              "type": [
-                "null",
-                "string"
-              ],
-              "default": null
-            },
-            {
-              "name": "userAgentOsVendor",
-              "type": [
-                "null",
-                "string"
-              ],
-              "default": null
-            },
-            {
-              "name": "technology",
-              "type": [
-                "null",
-                "string"
-              ],
-              "default": null
-            }
-          ]
-        }
-      },
-      "parseSpec": {
-        "format": "timeAndDims",
-        "timestampSpec": {
-          "column": "timestamp",
-          "format": "auto"
-        },
-        "dimensionsSpec": {
-          "dimensions": [
-            "referer",
-            "location",
-            "partyId",
-            "sessionId",
-            "pageViewId",
-            "eventType",
-            "userAgentString",
-            "userAgentName",
-            "userAgentFamily",
-            "userAgentVendor",
-            "userAgentType",
-            "userAgentVersion",
-            "userAgentDeviceCategory",
-            "userAgentOsFamily",
-            "userAgentOsVersion",
-            "userAgentOsVendor"
-          ]
-        }
-      }
-    },
-    "metricsSpec": [
-      {
-        "name": "count",
-        "type": "count"
-      }
-    ],
-    "granularitySpec": {
-      "type": "uniform",
-      "segmentGranularity": "HOUR",
-      "queryGranularity": "NONE"
-    }
-  },
-  "tuningConfig": {
-    "type": "kafka",
-    "maxRowsPerSegment": 5000000
-  },
-  "ioConfig": {
-    "topic": "divolte",
-    "consumerProperties": {
-      "bootstrap.servers": "docker-kafka:9092"
-    },
-    "taskCount": 1,
-    "replicas": 1,
-    "taskDuration": "PT5M"
-  }
+	"type": "kafka",
+	"dataSchema": {
+		"dataSource": "divolte-clickstream",
+		"parser": {
+			"type": "avro_stream",
+			"avroBytesDecoder": {
+				"type": "schema_inline",
+				"subjectAndIdConverter": {
+					"type": "avro_1124",
+					"topic": "docker-kafka:9092"
+				},
+				"schema": {
+					"namespace": "io.druid.data",
+					"name": "User",
+					"type": "record",
+					"fields": [{
+							"name": "detectedDuplicate",
+							"type": "boolean"
+						},
+						{
+							"name": "detectedCorruption",
+							"type": "boolean"
+						},
+						{
+							"name": "firstInSession",
+							"type": "boolean"
+						},
+						{
+							"name": "timestamp",
+							"type": "long"
+						},
+						{
+							"name": "remoteHost",
+							"type": "string"
+						},
+						{
+							"name": "referer",
+							"type": ["null", "string"],
+							"default": null
+						},
+						{
+							"name": "location",
+							"type": ["null", "string"],
+							"default": null
+						},
+						{
+							"name": "viewportPixelWidth",
+							"type": ["null", "int"],
+							"default": null
+						},
+						{
+							"name": "viewportPixelHeight",
+							"type": ["null", "int"],
+							"default": null
+						},
+						{
+							"name": "screenPixelWidth",
+							"type": ["null", "int"],
+							"default": null
+						},
+						{
+							"name": "screenPixelHeight",
+							"type": ["null", "int"],
+							"default": null
+						},
+						{
+							"name": "partyId",
+							"type": ["null", "string"],
+							"default": null
+						},
+						{
+							"name": "sessionId",
+							"type": ["null", "string"],
+							"default": null
+						},
+						{
+							"name": "pageViewId",
+							"type": ["null", "string"],
+							"default": null
+						},
+						{
+							"name": "eventType",
+							"type": "string",
+							"default": "unknown"
+						},
+						{
+							"name": "userAgentString",
+							"type": ["null", "string"],
+							"default": null
+						},
+						{
+							"name": "userAgentName",
+							"type": ["null", "string"],
+							"default": null
+						},
+						{
+							"name": "userAgentFamily",
+							"type": ["null", "string"],
+							"default": null
+						},
+						{
+							"name": "userAgentVendor",
+							"type": ["null", "string"],
+							"default": null
+						},
+						{
+							"name": "userAgentType",
+							"type": ["null", "string"],
+							"default": null
+						},
+						{
+							"name": "userAgentVersion",
+							"type": ["null", "string"],
+							"default": null
+						},
+						{
+							"name": "userAgentDeviceCategory",
+							"type": ["null", "string"],
+							"default": null
+						},
+						{
+							"name": "userAgentOsFamily",
+							"type": ["null", "string"],
+							"default": null
+						},
+						{
+							"name": "userAgentOsVersion",
+							"type": ["null", "string"],
+							"default": null
+						},
+						{
+							"name": "userAgentOsVendor",
+							"type": ["null", "string"],
+							"default": null
+						},
+						{
+							"name": "technology",
+							"type": ["null", "string"],
+							"default": null
+						}
+					]
+				}
+			},
+			"parseSpec": {
+				"format": "timeAndDims",
+				"timestampSpec": {
+					"column": "timestamp",
+					"format": "auto"
+				},
+				"dimensionsSpec": {
+					"dimensions": [
+						"detectedDuplicate",
+						"detectedCorruption",
+						"firstInSession",
+						"remoteHost",
+						"referer",
+						"location",
+						"viewportPixelWidth",
+						"viewportPixelHeight",
+						"screenPixelWidth",
+						"screenPixelHeight",
+						"partyId",
+						"sessionId",
+						"pageViewId",
+						"eventType",
+						"userAgentString",
+						"userAgentName",
+						"userAgentFamily",
+						"userAgentVendor",
+						"userAgentType",
+						"userAgentVersion",
+						"userAgentDeviceCategory",
+						"userAgentOsFamily",
+						"userAgentOsVersion",
+						"userAgentOsVendor",
+						"technology"
+					]
+				}
+			}
+		},
+		"metricsSpec": [{
+			"name": "count",
+			"type": "count"
+		}],
+		"granularitySpec": {
+			"type": "uniform",
+			"segmentGranularity": "HOUR",
+			"queryGranularity": "NONE"
+		}
+	},
+	"tuningConfig": {
+		"type": "kafka",
+		"maxRowsPerSegment": 5000000
+	},
+	"ioConfig": {
+		"topic": "divolte",
+		"consumerProperties": {
+			"bootstrap.servers": "docker-kafka:9092"
+		},
+		"taskCount": 1,
+		"replicas": 1,
+		"taskDuration": "PT5M"
+	}
 }
