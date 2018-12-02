@@ -22,8 +22,8 @@ RUN apt-get update \
       && rm -rf /var/lib/apt/lists/*
 
 # Maven
-RUN wget -q -O - http://archive.apache.org/dist/maven/maven-3/3.2.5/binaries/apache-maven-3.2.5-bin.tar.gz | tar -xzf - -C /usr/local \
-      && ln -s /usr/local/apache-maven-3.2.5 /usr/local/apache-maven \
+RUN wget -q -O - http://archive.apache.org/dist/maven/maven-3/3.3.9/binaries/apache-maven-3.3.9-bin.tar.gz | tar -xzf - -C /usr/local \
+      && ln -s /usr/local/apache-maven-3.3.9 /usr/local/apache-maven \
       && ln -s /usr/local/apache-maven/bin/mvn /usr/local/bin/mvn
 
 # Zookeeper
@@ -53,7 +53,7 @@ RUN mvn -U -B org.codehaus.mojo:versions-maven-plugin:2.1:set -DgenerateBackupPo
   && cp -r distribution/target/hadoop-dependencies /usr/local/druid/ \
   && rm -rf /tmp/* \
             /var/tmp/* \
-            /usr/local/apache-maven-3.2.5 \
+            /usr/local/apache-maven-3.3.9 \
             /usr/local/apache-maven \
             /root/.m2
 
