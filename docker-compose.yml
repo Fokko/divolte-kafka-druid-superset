@@ -19,7 +19,7 @@ services:
     environment:
       - DIVOLTE_KAFKA_BROKER_LIST=kafka:9092
     volumes:
-      - ./conf/divolte/:/opt/divolte/divolte-collector-0.5.0/conf/
+      - ./conf/divolte/:/opt/divolte/divolte-collector/conf/
     ports:
       - 8290:8290
     depends_on:
